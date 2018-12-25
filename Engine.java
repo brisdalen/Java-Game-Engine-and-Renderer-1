@@ -26,8 +26,7 @@ public class Engine extends Timer {
         lazers = new ArrayList<>();
         healPods = new ArrayList<>();
 
-        healPods.add(new HealPod(currentWindowWidth/2-20, currentWindowHeight/2-20,
-                40, 40));
+        spawnNewHealpod(currentWindowWidth/2-20, currentWindowHeight/2-20);
 
         scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -86,6 +85,10 @@ public class Engine extends Timer {
                         clearLazers();
                         spawnManyLazers(25);
                     }
+                    if(totalTime % 20 == 0 && totalTime >= 0) {
+                        clearHealPods();
+                        spawnManyHealpods(3);
+                    }
 
             }
         }, 1000, 1000);
@@ -104,6 +107,30 @@ public class Engine extends Timer {
         }
     }
 
+    public void clearHealPods() {
+        healPods.clear();
+        drawPanel.repaint();
+    }
+
+    public void spawnManyHealpods(int amount) {
+        for(int i = 0; i < amount; i++) {
+            spawnNewHealpod();
+        }
+    }
+    public void spawnNewHealpod() {
+        int width = 40;
+        int height = 40;
+        int x = randomer.nextInt(currentWindowWidth-width);
+        int y = randomer.nextInt(currentWindowHeight-width);
+        healPods.add(new HealPod(x,y,width,height));
+    }
+    public void spawnNewHealpod(int posX, int posY) {
+        int width = 40;
+        int height = 40;
+        int x = posX;
+        int y = posY;
+        healPods.add(new HealPod(x,y,width,height));
+    }
     public void clearLazers() {
         lazers.clear();
         drawPanel.repaint();
