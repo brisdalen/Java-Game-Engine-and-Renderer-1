@@ -17,6 +17,7 @@ public class HealPod {
                 player.y <= y + height &&
                 player.y + player.height >= y) {
             player.heal(2);
+            player.score++;
         }
     }
 

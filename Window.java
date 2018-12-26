@@ -106,6 +106,10 @@ public class Window extends JFrame {
                 repaint();
             }
 
+            engine.getPlayer().paintScore(g, currentWindowWidth-180, 50);
+            repaint(currentWindowWidth-300, 20, currentWindowWidth-20, 60);
+
+
         }
     }
 

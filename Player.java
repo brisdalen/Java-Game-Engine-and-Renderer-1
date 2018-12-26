@@ -10,6 +10,7 @@ public class Player {
     public Controller controller;
     public boolean firing;
     private int maxHealth = 1000;
+    public int score = 0;
 
     private int fixedHealAmount = 50;
     private int fixedDamageAmount = 50;
@@ -126,5 +127,11 @@ public class Player {
         g.fillRect(x, y, width, height);
         g.setColor(Color.green);
         g.fillRect(x, y, (int)Math.ceil(percentage), height);
+    }
+
+    public void paintScore(Graphics g, int x, int y) {
+        g.setColor(Color.black);
+        g.drawString("Score: ", x -100, y);
+        g.drawString(Integer.toString(score/5), x, y+1);
     }
 }

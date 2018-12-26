@@ -26,14 +26,14 @@ public class Lazer {
 
     public void roamX(int distance) {
         if(direction == 0) {
-            if(x == startX) {
+            if(x <= startX) {
                 direction = 2;
             } else {
                 stepDirection();
             }
         }
         if(direction == 2) {
-            if(x == startX + distance) {
+            if(x >= startX + distance) {
                 direction = 0;
             } else {
                 stepDirection();
@@ -42,14 +42,14 @@ public class Lazer {
     }
     public void roamY(int distance) {
         if(direction == 1) {
-            if(y == startY) {
+            if(y <= startY) {
                 direction = 3;
             } else {
                 stepDirection();
             }
         }
         if(direction == 3) {
-            if(y == startY + distance) {
+            if(y >= startY + distance) {
                 direction = 1;
             } else {
                 stepDirection();
