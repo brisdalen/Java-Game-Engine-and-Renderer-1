@@ -20,7 +20,6 @@ public class Window extends JFrame {
     private ArrayList<HealPod> healPods;
 
     private Font font;
-
     private Engine engine;
 
     public Window() {
@@ -104,6 +103,7 @@ public class Window extends JFrame {
                 g.setColor(Color.black);
                 g.drawString("YOU'RE DEAD.", fontX, fontY);
                 repaint();
+                engine.stop();
             }
 
             engine.getPlayer().paintScore(g, currentWindowWidth-180, 50);

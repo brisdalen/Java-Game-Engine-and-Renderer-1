@@ -8,7 +8,6 @@ public class Player {
     public int movementSpeedStart = 4;
     public int movementSpeed = 4;
     public Controller controller;
-    public boolean firing;
     private int maxHealth = 1000;
     public int score = 0;
 
@@ -21,7 +20,6 @@ public class Player {
         this.width = width;
         this.height = height;
         this.color = color;
-        this.firing = false;
         this.controller = new Controller(this);
     }
 
@@ -78,18 +76,6 @@ public class Player {
             changeDirection(3);
             y += movementSpeed;
         }
-        if(controller.space) {
-            startWeapon();
-        } else {
-            stopWeapon();
-        }
-    }
-
-    public void startWeapon() {
-        firing = true;
-    }
-    public void stopWeapon() {
-        firing = false;
     }
 
     public void paint(Graphics g) {

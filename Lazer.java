@@ -77,7 +77,7 @@ public class Lazer {
                 player.x + player.width >= x &&
                 player.y <= y + height &&
                 player.y + player.height >= y) {
-            player.takeDamage(3);
+            player.takeDamage(4);
         }
     }
 
