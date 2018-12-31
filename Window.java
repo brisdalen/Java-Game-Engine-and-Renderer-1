@@ -14,6 +14,9 @@ public class Window extends JFrame {
     public static final Color CANVAS_BG_COLOR = new Color(120,80,120);
     public Color playerColor = new Color(180,45,50);
 
+    private JPanel startPanel;
+    private JButton startGameButton;
+
     private DrawPanel drawPanel;
     private Player player;
     private ArrayList<Lazer> lazers;
@@ -23,13 +26,25 @@ public class Window extends JFrame {
     private Engine engine;
 
     public Window() {
+        startPanel = new JPanel();
+        startPanel.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
+        startGameButton = new JButton("Start the game!");
+        startGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startGame(startGameButton);
+            }
+        });
+
         drawPanel = new DrawPanel();
         drawPanel.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
         JPanel labelPanel = new JPanel(new FlowLayout());
+        labelPanel.add(startGameButton);
         labelPanel.add(new JLabel("Use the Arrow Keys to move. Hold shift to move slow."));
 
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
+        //cp.add(startPanel);
         cp.add(drawPanel, BorderLayout.CENTER);
         cp.add(labelPanel, BorderLayout.SOUTH);
 
@@ -37,8 +52,8 @@ public class Window extends JFrame {
         setTitle("Rendering test");
         pack();
 
-        currentWindowWidth = drawPanel.getWidth();
-        currentWindowHeight = drawPanel.getHeight();
+        currentWindowWidth = startPanel.getWidth();
+        currentWindowHeight = startPanel.getHeight();
 
         engine = new Engine(drawPanel,
                             new Player(CANVAS_WIDTH / 2 -10,CANVAS_HEIGHT / 2 -10,20, 20, playerColor));
@@ -61,6 +76,12 @@ public class Window extends JFrame {
 
         setVisible(true);
         requestFocus();
+    }
+
+    public void startGame(JButton button) {
+        System.out.println("Game has started.");
+        button.setEnabled(false);
+        engine.start();
     }
 
     class DrawPanel extends JPanel {

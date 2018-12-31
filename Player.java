@@ -61,6 +61,7 @@ public class Player {
 
     public void getInputs() {
         if(controller.left) {
+            System.out.println("left");
             changeDirection(0);
             x -= movementSpeed;
         }

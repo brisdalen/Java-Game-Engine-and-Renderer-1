@@ -15,6 +15,7 @@ public class Engine extends Timer {
     public Random randomer;
     public int totalTime = -20;
 
+    public boolean hasStarted = false;
     public boolean hasLost = false;
 
     public Engine(Window.DrawPanel drawPanel, Player player) {
@@ -29,80 +30,80 @@ public class Engine extends Timer {
         healPods = new ArrayList<>();
 
         spawnNewHealpod(currentWindowWidth/2-20, currentWindowHeight/2-20);
-
-            scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    if(!hasLost) {
-                        player.getInputs();
-                        if (player.x <= 0) {
-                            player.x = 0;
-                        }
-                        if (player.x + player.width >= currentWindowWidth) {
-                            player.x = currentWindowWidth - player.width - 1;
-                        }
-                        if (player.y <= 0) {
-                            player.y = 0;
-                        }
-                        if (player.y + player.height >= currentWindowHeight) {
-                            player.y = currentWindowHeight - player.height - 1;
-                        }
-                        drawPanel.repaint(getBigClipX1(), getBigClipY1(),
-                                getBigClipX2(), getBigClipY2());
-                        //Sett alle lasere i bevegelse
-                        for (Lazer l : lazers) {
-                            if (l.getDirection() == 0 || l.getDirection() == 2) {
-                                l.roamX(100);
-                            } else {
-                                l.roamY(100);
-                            }
-                        }
-
-
-                        checkAllLazers(lazers, drawPanel);
-                        checkAllHealpods(healPods, drawPanel);
-                    }
-                }
-            }, 0, 40);
-            scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    if(!hasLost) {
-                        System.out.println(totalTime);
-                        totalTime++;
-
-                        if (totalTime == -13) {
-                            spawnNewLazer();
-                        }
-                        if (totalTime == -8) {
-                            spawnManyLazers(3);
-                        }
-                        if (totalTime == -6) {
-                            spawnManyLazers(6);
-                        }
-                        if (totalTime == -3) {
-                            System.out.println("CLEARED");
-                            clearLazers();
-                        }
-                        if (totalTime == 0) {
-                            spawnManyLazers(25);
-                        }
-                        if (totalTime % 10 == 0 && totalTime >= 0) {
-                            clearLazers();
-                            spawnManyLazers(25);
-                        }
-                        if (totalTime % 20 == 0 && totalTime >= 0) {
-                            clearHealPods();
-                            spawnManyHealpods(3);
-                        }
-                    }
-
-                }
-            }, 1000, 1000);
     }
 
     public void start() {
+        hasStarted = true;
 
+        scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if(!hasLost) {
+                    player.getInputs();
+                    if (player.x <= 0) {
+                        player.x = 0;
+                    }
+                    if (player.x + player.width >= currentWindowWidth) {
+                        player.x = currentWindowWidth - player.width - 1;
+                    }
+                    if (player.y <= 0) {
+                        player.y = 0;
+                    }
+                    if (player.y + player.height >= currentWindowHeight) {
+                        player.y = currentWindowHeight - player.height - 1;
+                    }
+                    drawPanel.repaint(getBigClipX1(), getBigClipY1(),
+                            getBigClipX2(), getBigClipY2());
+                    //Sett alle lasere i bevegelse
+                    for (Lazer l : lazers) {
+                        if (l.getDirection() == 0 || l.getDirection() == 2) {
+                            l.roamX(100);
+                        } else {
+                            l.roamY(100);
+                        }
+                    }
+
+
+                    checkAllLazers(lazers, drawPanel);
+                    checkAllHealpods(healPods, drawPanel);
+                }
+            }
+        }, 0, 40);
+        scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if(!hasLost) {
+                    System.out.println(totalTime);
+                    totalTime++;
+
+                    if (totalTime == -13) {
+                        spawnNewLazer();
+                    }
+                    if (totalTime == -8) {
+                        spawnManyLazers(3);
+                    }
+                    if (totalTime == -6) {
+                        spawnManyLazers(6);
+                    }
+                    if (totalTime == -3) {
+                        System.out.println("CLEARED");
+                        clearLazers();
+                    }
+                    if (totalTime == 0) {
+                        spawnManyLazers(25);
+                    }
+                    if (totalTime % 10 == 0 && totalTime >= 0) {
+                        clearLazers();
+                        spawnManyLazers(25);
+                    }
+                    if (totalTime % 20 == 0 && totalTime >= 0) {
+                        clearHealPods();
+                        spawnManyHealpods(3);
+                    }
+                }
+
+            }
+        }, 1000, 1000);
     }
 
     public void stop() {
