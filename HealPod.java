@@ -33,6 +33,8 @@ public class HealPod {
     }
 
     public void paint(Graphics g) {
+        g.setColor(new Color(0, 180, 0));
+        g.fillRect(x-2, y-2, width+4, height+4);
         g.setColor(Color.green);
         g.fillRect(x,y,width,height);
     }
