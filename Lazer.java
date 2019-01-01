@@ -83,10 +83,10 @@ public class Lazer {
 
     public Rectangle getClip(int offset) {
 
-        int clipX = x - offset;
-        int clipY = y - offset;
-        int clipWidth = width + offset;
-        int clipHeight = height + offset;
+        int clipX = x - offset*3;
+        int clipY = y - offset*3;
+        int clipWidth = width + offset*2;
+        int clipHeight = height + offset*2;
 
         return new Rectangle(clipX, clipY, clipWidth, clipHeight);
     }
@@ -96,6 +96,8 @@ public class Lazer {
     }
 
     public void paint(Graphics g) {
+        g.setColor(Color.black);
+        g.fillRect(x-2, y-2, width+4, height+4);
         g.setColor(Color.red);
         g.fillRect(x,y,width,height);
     }

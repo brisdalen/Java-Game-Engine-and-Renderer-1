@@ -20,25 +20,25 @@ public class Engine extends Timer {
 
     public Engine(Window.DrawPanel drawPanel, Player player) {
         this.drawPanel = drawPanel;
-        currentWindowWidth = drawPanel.getWidth();
-        currentWindowHeight = drawPanel.getHeight();
-        randomer = new Random();
+        this.currentWindowWidth = drawPanel.getWidth();
+        this.currentWindowHeight = drawPanel.getHeight();
+        this.randomer = new Random();
 
         this.player = player;
 
-        lazers = new ArrayList<>();
-        healPods = new ArrayList<>();
+        this.lazers = new ArrayList<>();
+        this.healPods = new ArrayList<>();
 
-        spawnNewHealpod(currentWindowWidth/2-20, currentWindowHeight/2-20);
+        init();
     }
 
-    public void start() {
-        hasStarted = true;
+    public void init() {
+        spawnNewHealpod(currentWindowWidth/2-20, currentWindowHeight/2-20);
 
         scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if(!hasLost) {
+                if (!hasLost) {
                     player.getInputs();
                     if (player.x <= 0) {
                         player.x = 0;
@@ -54,6 +54,19 @@ public class Engine extends Timer {
                     }
                     drawPanel.repaint(getBigClipX1(), getBigClipY1(),
                             getBigClipX2(), getBigClipY2());
+                }
+            }
+        }, 0, 40);
+    }
+
+    public void start() {
+        hasStarted = true;
+
+        scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if(!hasLost) {
+                    player.getInputs();
                     //Sett alle lasere i bevegelse
                     for (Lazer l : lazers) {
                         if (l.getDirection() == 0 || l.getDirection() == 2) {
@@ -62,7 +75,6 @@ public class Engine extends Timer {
                             l.roamY(100);
                         }
                     }
-
 
                     checkAllLazers(lazers, drawPanel);
                     checkAllHealpods(healPods, drawPanel);

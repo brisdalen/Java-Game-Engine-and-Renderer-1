@@ -39,8 +39,9 @@ public class Window extends JFrame {
         drawPanel = new DrawPanel();
         drawPanel.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
         JPanel labelPanel = new JPanel(new FlowLayout());
+        labelPanel.add(new JLabel("Use the Arrow Keys to move. Hold shift to move slow. " +
+                "Stay on the healing pods to get points!"));
         labelPanel.add(startGameButton);
-        labelPanel.add(new JLabel("Use the Arrow Keys to move. Hold shift to move slow."));
 
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
