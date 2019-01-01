@@ -4,7 +4,7 @@ public class Player {
     int x, y, width, height;
     Color color = Color.red;
     private int direction = 2; // 0 = left, 1 = up, 2 = right, 3 = down
-    public int health = 700;
+    public int health = 1001;
     public int movementSpeedStart = 4;
     public int movementSpeed = 4;
     public Controller controller;
@@ -21,6 +21,10 @@ public class Player {
         this.height = height;
         this.color = color;
         this.controller = new Controller(this);
+
+        if(health > maxHealth) {
+            health = maxHealth;
+        }
     }
 
     public void changeDirection(int direction) {
@@ -61,7 +65,6 @@ public class Player {
 
     public void getInputs() {
         if(controller.left) {
-            System.out.println("left");
             changeDirection(0);
             x -= movementSpeed;
         }
