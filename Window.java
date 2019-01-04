@@ -83,6 +83,7 @@ public class Window extends JFrame {
         System.out.println("Game has started.");
         button.setEnabled(false);
         engine.start();
+        requestFocus();
     }
 
     class DrawPanel extends JPanel {
