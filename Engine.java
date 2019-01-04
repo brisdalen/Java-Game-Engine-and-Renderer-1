@@ -38,22 +38,8 @@ public class Engine extends Timer {
         scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if (!hasLost) {
-                    player.getInputs();
-                    if (player.x <= 0) {
-                        player.x = 0;
-                    }
-                    if (player.x + player.width >= currentWindowWidth) {
-                        player.x = currentWindowWidth - player.width - 1;
-                    }
-                    if (player.y <= 0) {
-                        player.y = 0;
-                    }
-                    if (player.y + player.height >= currentWindowHeight) {
-                        player.y = currentWindowHeight - player.height - 1;
-                    }
-                    drawPanel.repaint(getBigClipX1(), getBigClipY1(),
-                            getBigClipX2(), getBigClipY2());
+                if (!hasLost && !hasStarted) {
+                    checkPlayer(player, drawPanel);
                 }
             }
         }, 0, 40);
@@ -66,7 +52,7 @@ public class Engine extends Timer {
             @Override
             public void run() {
                 if(!hasLost) {
-                    player.getInputs();
+                    checkPlayer(player, drawPanel);
                     //Sett alle lasere i bevegelse
                     for (Lazer l : lazers) {
                         if (l.getDirection() == 0 || l.getDirection() == 2) {
@@ -122,6 +108,23 @@ public class Engine extends Timer {
         hasLost = true;
     }
 
+    private void checkPlayer(Player player, Window.DrawPanel drawPanel) {
+        player.getInputs();
+        if (player.x <= 0) {
+            player.x = 0;
+        }
+        if (player.x + player.width >= currentWindowWidth) {
+            player.x = currentWindowWidth - player.width - 1;
+        }
+        if (player.y <= 0) {
+            player.y = 0;
+        }
+        if (player.y + player.height >= currentWindowHeight) {
+            player.y = currentWindowHeight - player.height - 1;
+        }
+        drawPanel.repaint(getBigClipX1(), getBigClipY1(),
+                getBigClipX2(), getBigClipY2());
+    }
     private void checkAllLazers(ArrayList<Lazer> lazers, Window.DrawPanel drawPanel) {
         for(Lazer l : lazers) {
             l.checkCollision(player);
