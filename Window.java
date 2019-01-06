@@ -14,8 +14,9 @@ public class Window extends JFrame {
     public static final Color CANVAS_BG_COLOR = new Color(120,80,120);
     public Color playerColor = new Color(180,45,50);
 
-    private JPanel startPanel;
-    private JButton startGameButton;
+    private boolean first = true;
+
+    public JButton startGameButton;
 
     private DrawPanel drawPanel;
     private Player player;
@@ -26,8 +27,6 @@ public class Window extends JFrame {
     private Engine engine;
 
     public Window() {
-        startPanel = new JPanel();
-        startPanel.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
         startGameButton = new JButton("Start the game!");
         startGameButton.addActionListener(new ActionListener() {
             @Override
@@ -36,10 +35,10 @@ public class Window extends JFrame {
             }
         });
 
-        drawPanel = new DrawPanel();
+        drawPanel = new DrawPanel(this);
         drawPanel.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
         JPanel labelPanel = new JPanel(new FlowLayout());
-        labelPanel.add(new JLabel("Use the Arrow Keys to move. Hold shift to move slow. " +
+        labelPanel.add(new JLabel("Use the Arrow Keys or WASD to move. Hold shift to move slow. " +
                 "Stay on the healing pods to get points!"));
         labelPanel.add(startGameButton);
 
@@ -53,8 +52,8 @@ public class Window extends JFrame {
         setTitle("Rendering test");
         pack();
 
-        currentWindowWidth = startPanel.getWidth();
-        currentWindowHeight = startPanel.getHeight();
+        currentWindowWidth = drawPanel.getWidth();
+        currentWindowHeight = drawPanel.getHeight();
 
         engine = new Engine(drawPanel,
                             new Player(CANVAS_WIDTH / 2 -10,CANVAS_HEIGHT / 2 -10,20, 20, playerColor));
@@ -86,7 +85,42 @@ public class Window extends JFrame {
         requestFocus();
     }
 
+    public void resetGame() {
+        System.out.println("Game reset");
+    }
+
+    public void setButtonToReset(JButton button) {
+        button.setText("Go again?");
+        for(ActionListener al : button.getActionListeners()) {
+            button.removeActionListener(al);
+        }
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resetGame();
+            }
+        });
+        button.setEnabled(true);
+        /**TODO: Add code to reset window
+         *  - Endre ActionPerformed hos startGame ved reset
+         *  - Set player to the centre
+         *  - Clear all healpods and spawn 1 in the centre
+         *  - Clear all lazers
+        **/
+    }
+
     class DrawPanel extends JPanel {
+
+        public Window window;
+
+        public DrawPanel(Window window) {
+            this.window = window;
+        }
+        public void updateParentFrame() {
+            if(engine.player.health <= 0) {
+                setButtonToReset(window.startGameButton);
+            }
+        }
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
