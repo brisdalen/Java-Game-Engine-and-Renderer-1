@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 public class Controller implements KeyListener {
 
     private Player player;
-    public boolean left, up, right, down, space;
+    public boolean left, up, right, down, k;
 
     public Controller(Player player) {
         this.player = player;
@@ -13,7 +13,7 @@ public class Controller implements KeyListener {
         up = false;
         right = false;
         down = false;
-        space = false;
+        k = false;
         System.out.println("Controller created.");
     }
 
@@ -24,21 +24,21 @@ public class Controller implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+            left = true;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
+            up = true;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+            right = true;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
+            down = true;
+        }
         switch(e.getKeyCode()) {
-            case KeyEvent.VK_LEFT:
-                left = true;
-                break;
-            case KeyEvent.VK_UP:
-                up = true;
-                break;
-            case KeyEvent.VK_RIGHT:
-                right = true;
-                break;
-            case KeyEvent.VK_DOWN:
-                down = true;
-                break;
-            case KeyEvent.VK_SPACE:
-                space = true;
+            case KeyEvent.VK_K:
+                k = true;
                 break;
             case KeyEvent.VK_SHIFT:
                 player.movementSpeed = 2;
@@ -48,21 +48,21 @@ public class Controller implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+            left = false;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
+            up = false;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+            right = false;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
+            down = false;
+        }
         switch(e.getKeyCode()) {
-            case KeyEvent.VK_LEFT:
-                left = false;
-                break;
-            case KeyEvent.VK_UP:
-                up = false;
-                break;
-            case KeyEvent.VK_RIGHT:
-                right = false;
-                break;
-            case KeyEvent.VK_DOWN:
-                down = false;
-                break;
-            case KeyEvent.VK_SPACE:
-                space = false;
+            case KeyEvent.VK_K:
+                k = false;
                 break;
             case KeyEvent.VK_SHIFT:
                 player.movementSpeed = player.movementSpeedStart;
