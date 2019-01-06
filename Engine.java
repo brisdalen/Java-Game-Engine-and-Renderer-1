@@ -13,10 +13,12 @@ public class Engine extends Timer {
     public int currentWindowWidth;
     public int currentWindowHeight;
     public Random randomer;
-    public int totalTime = -20;
+    public int startTime = -20;
+    public int totalTime = startTime;
 
     public boolean hasStarted = false;
     public boolean hasLost = false;
+    public boolean resetPrompt = false;
 
     public Engine(Window.DrawPanel drawPanel, Player player) {
         this.drawPanel = drawPanel;
@@ -51,6 +53,11 @@ public class Engine extends Timer {
         scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                if(hasLost && !resetPrompt) {
+                    drawPanel.updateParentFrame();
+                    resetPrompt = true;
+                    reset();
+                }
                 if(!hasLost) {
                     checkPlayer(player, drawPanel);
                     //Sett alle lasere i bevegelse
@@ -104,8 +111,27 @@ public class Engine extends Timer {
         }, 1000, 1000);
     }
 
+    public void reset() {
+        /**TODO: Add code to reset engine
+         *  - reset timer to startTime
+         *  - clear all healpods and lazers
+         *  - set player location to the centre
+         *  - spawn 1 healpod in the centre
+         *  - reset hasLost
+         */
+        totalTime = startTime;
+        clearHealPods();
+        clearLazers();
+        player.reset();
+
+        spawnNewHealpod(currentWindowWidth/2-20, currentWindowHeight/2-20);
+
+        resetPrompt = false;
+    }
+
     public void stop() {
         hasLost = true;
+        hasStarted = false;
     }
 
     private void checkPlayer(Player player, Window.DrawPanel drawPanel) {

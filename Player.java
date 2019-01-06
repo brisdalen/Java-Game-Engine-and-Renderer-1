@@ -1,10 +1,11 @@
 import java.awt.*;
 
 public class Player {
-    int x, y, width, height;
+    int x, y, width, height, startX, startY;
     Color color = Color.red;
     private int direction = 2; // 0 = left, 1 = up, 2 = right, 3 = down
-    public int health = 1001;
+    public int startHealth = 1000;
+    public int health = startHealth;
     public int movementSpeedStart = 4;
     public int movementSpeed = 4;
     public Controller controller;
@@ -17,6 +18,8 @@ public class Player {
     public Player(int x, int y, int width, int height, Color color) {
         this.x = x;
         this.y = y;
+        this.startX = x;
+        this.startY = y;
         this.width = width;
         this.height = height;
         this.color = color;
@@ -25,6 +28,14 @@ public class Player {
         if(health > maxHealth) {
             health = maxHealth;
         }
+    }
+
+    public void reset() {
+        x = startX;
+        y = startY;
+        direction = 2;
+        health = startHealth;
+        score = 0;
     }
 
     public void changeDirection(int direction) {
@@ -79,6 +90,9 @@ public class Player {
         if(controller.down) {
             changeDirection(3);
             y += movementSpeed;
+        }
+        if(controller.k) {
+            health = 2;
         }
     }
 
