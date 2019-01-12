@@ -262,6 +262,10 @@ public class Engine extends Timer {
         return direction;
     }
 
+    public void win() {
+    	System.out.println("You have won!");
+    }
+
     public Player getPlayer() {
         return player;
     }
