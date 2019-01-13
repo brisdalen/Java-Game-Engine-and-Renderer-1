@@ -16,6 +16,7 @@ public class Engine extends Timer {
     public int startTime = -20;
     public int totalTime = startTime;
 
+    public boolean running = false;
     public boolean hasStarted = false;
     public boolean hasLost = false;
     public boolean resetPrompt = false;
@@ -35,6 +36,7 @@ public class Engine extends Timer {
     }
 
     public void init() {
+        running = true;
         spawnNewHealpod(currentWindowWidth/2-20, currentWindowHeight/2-20);
 
         scheduleAtFixedRate(new TimerTask() {
@@ -45,6 +47,21 @@ public class Engine extends Timer {
                 }
             }
         }, 0, 40);
+
+
+        //TODO: Refactor from here
+        if(hasStarted) {
+
+            //Check player
+
+
+            //If you lose, and resetPrompt has not been displayed yet
+            if(hasLost && !resetPrompt) {
+                drawPanel.updateParentFrame();
+                resetPrompt = true;
+                reset();
+            }
+        }
     }
 
     public void start() {
@@ -53,6 +70,7 @@ public class Engine extends Timer {
         scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                //If you lost, and resetPrompt has not been displayed yet
                 if(hasLost && !resetPrompt) {
                     drawPanel.updateParentFrame();
                     resetPrompt = true;
