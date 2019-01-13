@@ -13,10 +13,13 @@ public class Engine extends Timer {
     public int currentWindowWidth;
     public int currentWindowHeight;
     public Random randomer;
-    public int totalTime = -20;
+    public int startTime = -20;
+    public int totalTime = startTime;
 
+    public boolean running = false;
     public boolean hasStarted = false;
     public boolean hasLost = false;
+    public boolean resetPrompt = false;
 
     public Engine(Window.DrawPanel drawPanel, Player player) {
         this.drawPanel = drawPanel;
@@ -33,30 +36,32 @@ public class Engine extends Timer {
     }
 
     public void init() {
+        running = true;
         spawnNewHealpod(currentWindowWidth/2-20, currentWindowHeight/2-20);
 
         scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if (!hasLost) {
-                    player.getInputs();
-                    if (player.x <= 0) {
-                        player.x = 0;
-                    }
-                    if (player.x + player.width >= currentWindowWidth) {
-                        player.x = currentWindowWidth - player.width - 1;
-                    }
-                    if (player.y <= 0) {
-                        player.y = 0;
-                    }
-                    if (player.y + player.height >= currentWindowHeight) {
-                        player.y = currentWindowHeight - player.height - 1;
-                    }
-                    drawPanel.repaint(getBigClipX1(), getBigClipY1(),
-                            getBigClipX2(), getBigClipY2());
+                if (!hasLost && !hasStarted) {
+                    checkPlayer(player, drawPanel);
                 }
             }
         }, 0, 40);
+
+
+        //TODO: Refactor from here
+        if(hasStarted) {
+
+            //Check player
+
+
+            //If you lose, and resetPrompt has not been displayed yet
+            if(hasLost && !resetPrompt) {
+                drawPanel.updateParentFrame();
+                resetPrompt = true;
+                reset();
+            }
+        }
     }
 
     public void start() {
@@ -65,8 +70,14 @@ public class Engine extends Timer {
         scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                //If you lost, and resetPrompt has not been displayed yet
+                if(hasLost && !resetPrompt) {
+                    drawPanel.updateParentFrame();
+                    resetPrompt = true;
+                    reset();
+                }
                 if(!hasLost) {
-                    player.getInputs();
+                    checkPlayer(player, drawPanel);
                     //Sett alle lasere i bevegelse
                     for (Lazer l : lazers) {
                         if (l.getDirection() == 0 || l.getDirection() == 2) {
@@ -118,10 +129,46 @@ public class Engine extends Timer {
         }, 1000, 1000);
     }
 
-    public void stop() {
-        hasLost = true;
+    public void reset() {
+        /**TODO: Add code to reset engine
+         *  - reset timer to startTime
+         *  - clear all healpods and lazers
+         *  - set player location to the centre
+         *  - spawn 1 healpod in the centre
+         *  - reset hasLost
+         */
+        totalTime = startTime;
+        clearHealPods();
+        clearLazers();
+        player.reset();
+
+        spawnNewHealpod(currentWindowWidth/2-20, currentWindowHeight/2-20);
+
+        resetPrompt = false;
     }
 
+    public void stop() {
+        hasLost = true;
+        hasStarted = false;
+    }
+
+    private void checkPlayer(Player player, Window.DrawPanel drawPanel) {
+        player.getInputs();
+        if (player.x <= 0) {
+            player.x = 0;
+        }
+        if (player.x + player.width >= currentWindowWidth) {
+            player.x = currentWindowWidth - player.width - 1;
+        }
+        if (player.y <= 0) {
+            player.y = 0;
+        }
+        if (player.y + player.height >= currentWindowHeight) {
+            player.y = currentWindowHeight - player.height - 1;
+        }
+        drawPanel.repaint(getBigClipX1(), getBigClipY1(),
+                getBigClipX2(), getBigClipY2());
+    }
     private void checkAllLazers(ArrayList<Lazer> lazers, Window.DrawPanel drawPanel) {
         for(Lazer l : lazers) {
             l.checkCollision(player);
@@ -221,7 +268,7 @@ public class Engine extends Timer {
             } else {
                 direction = 0;
             }
-        //Typ 0
+            //Typ 0
         } else {
             if(y - height < currentWindowHeight/2) {
                 direction = 3;
@@ -231,6 +278,10 @@ public class Engine extends Timer {
         }
 
         return direction;
+    }
+
+    public void win() {
+        System.out.println("You have won!");
     }
 
     public Player getPlayer() {
