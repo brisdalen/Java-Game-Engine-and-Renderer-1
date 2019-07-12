@@ -18,7 +18,7 @@ public class Engine extends Timer {
 
     public boolean running = false;
     public boolean hasStarted = false;
-    public boolean hasLost = false;
+    public static boolean hasLost = false;
     public boolean resetPrompt = false;
 
     public Engine(Window.DrawPanel drawPanel, Player player) {
@@ -48,20 +48,6 @@ public class Engine extends Timer {
             }
         }, 0, 40);
 
-
-        //TODO: Refactor from here
-        if(hasStarted) {
-
-            //Check player
-
-
-            //If you lose, and resetPrompt has not been displayed yet
-            if(hasLost && !resetPrompt) {
-                drawPanel.updateParentFrame();
-                resetPrompt = true;
-                reset();
-            }
-        }
     }
 
     public void start() {
@@ -74,7 +60,7 @@ public class Engine extends Timer {
                 if(hasLost && !resetPrompt) {
                     drawPanel.updateParentFrame();
                     resetPrompt = true;
-                    reset();
+                    //reset();
                 }
                 if(!hasLost) {
                     checkPlayer(player, drawPanel);
@@ -92,6 +78,7 @@ public class Engine extends Timer {
                 }
             }
         }, 0, 40);
+        // Timings
         scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -130,27 +117,38 @@ public class Engine extends Timer {
     }
 
     public void reset() {
-        /**TODO: Add code to reset engine
-         *  - reset timer to startTime
-         *  - clear all healpods and lazers
-         *  - set player location to the centre
-         *  - spawn 1 healpod in the centre
-         *  - reset hasLost
+        System.out.println("RESET");
+        /* TODO: Add code to reset engine
+         *  - husk på forskjell på STOP og RESET
+         *  - ny thread med totalTime ved hver reset?
          */
+        resetPrompt = false;
+        hasLost = false;
         totalTime = startTime;
+
         clearHealPods();
         clearLazers();
         player.reset();
 
-        spawnNewHealpod(currentWindowWidth/2-20, currentWindowHeight/2-20);
+        running = true;
 
-        resetPrompt = false;
+        //spawnNewHealpod(currentWindowWidth/2-20, currentWindowHeight/2-20);
+
     }
 
     public void stop() {
+        System.out.println("STOP");
         hasLost = true;
-        hasStarted = false;
+        running = false;
+        //hasStarted = false;
     }
+
+    /*
+    Player input
+    Collision
+    Spawn
+    Clear
+     */
 
     private void checkPlayer(Player player, Window.DrawPanel drawPanel) {
         player.getInputs();
@@ -165,6 +163,9 @@ public class Engine extends Timer {
         }
         if (player.y + player.height >= currentWindowHeight) {
             player.y = currentWindowHeight - player.height - 1;
+        }
+        if(player.health <= 0) {
+            stop();
         }
         drawPanel.repaint(getBigClipX1(), getBigClipY1(),
                 getBigClipX2(), getBigClipY2());

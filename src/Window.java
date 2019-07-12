@@ -87,6 +87,10 @@ public class Window extends JFrame {
 
     public void resetGame() {
         System.out.println("Game reset");
+        this.setVisible(false);
+        this.dispose();
+        engine.reset();
+        new Window();
     }
 
     public void setButtonToReset(JButton button) {
@@ -141,12 +145,15 @@ public class Window extends JFrame {
                 first = false;
             }
 
-            for(int i = 0; i < engine.getLazers().size(); i++) {
-                engine.getLazers().get(i).paint(g);
-            }
+            // Unngå ConcurrentModificationException når man taper
+            if(!Engine.hasLost) {
+                for (int i = 0; i < engine.getLazers().size(); i++) {
+                    engine.getLazers().get(i).paint(g);
+                }
 
-            for(HealPod hp : engine.getHealPods()) {
-                hp.paint(g);
+                for (HealPod hp : engine.getHealPods()) {
+                    hp.paint(g);
+                }
             }
 
             engine.getPlayer().paint(g);
@@ -160,7 +167,7 @@ public class Window extends JFrame {
                 g.setColor(Color.black);
                 g.drawString("YOU'RE DEAD.", fontX, fontY);
                 repaint();
-                engine.stop();
+                //engine.stop();
             }
 
             engine.getPlayer().paintScore(g, currentWindowWidth-180, 50);

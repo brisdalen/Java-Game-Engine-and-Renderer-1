@@ -92,7 +92,7 @@ public class Player {
             y += movementSpeed;
         }
         if(controller.k) {
-            health = 2;
+            health = 0;
         }
     }
 
