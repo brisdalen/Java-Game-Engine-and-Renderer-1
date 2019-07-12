@@ -2,12 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb972914-c55c-449f-ba9b-ea431fde93cd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HealPod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HealPod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lazer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lazer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-game-engine/Engine$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-game-engine/Engine$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-game-engine/Engine$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-game-engine/Engine$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-game-engine/Engine$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-game-engine/Engine$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-game-engine/Engine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-game-engine/Engine.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-game-engine/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-game-engine/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-game-engine/Window$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-game-engine/Window$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-game-engine/Window$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-game-engine/Window$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-game-engine/Window$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-game-engine/Window$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-game-engine/Window$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-game-engine/Window$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-game-engine/Window$DrawPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-game-engine/Window$DrawPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-game-engine/Window.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-game-engine/Window.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,36 +33,61 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Window.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="80" column="21" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="21" />
+            <state relative-caret-position="17">
+              <caret line="60" column="81" selection-start-line="60" selection-start-column="81" selection-end-line="60" selection-end-column="81" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3526#3527#0" expanded="true" />
+                <element signature="e#3569#3570#0" expanded="true" />
                 <element signature="e#3623#3624#0" expanded="true" />
                 <element signature="e#3667#3668#0" expanded="true" />
-                <element signature="e#5707#5708#0" expanded="true" />
-                <element signature="e#5751#5752#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Engine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="122" column="53" selection-start-line="122" selection-start-column="53" selection-end-line="122" selection-end-column="53" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#6312#6313#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Engine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="32" column="40" lean-forward="true" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1830#2738#0" expanded="true" />
+                <element signature="e#2737#2738#0" expanded="true" />
+                <element signature="e#2776#3944#0" expanded="true" />
+                <element signature="e#3943#3944#0" expanded="true" />
+                <element signature="e#8685#8686#0" expanded="true" />
+                <element signature="e#8736#8737#0" expanded="true" />
+                <element signature="e#8769#8770#0" expanded="true" />
+                <element signature="e#8798#8799#0" expanded="true" />
+                <element signature="e#8840#8841#0" expanded="true" />
+                <element signature="e#8869#8870#0" expanded="true" />
+                <element signature="e#8915#8916#0" expanded="true" />
+                <element signature="e#8946#8947#0" expanded="true" />
+                <element signature="e#8979#8980#0" expanded="true" />
+                <element signature="e#9027#9028#0" expanded="true" />
+                <element signature="e#9059#9060#0" expanded="true" />
+                <element signature="e#9096#9097#0" expanded="true" />
+                <element signature="e#9128#9129#0" expanded="true" />
+                <element signature="e#9177#9178#0" expanded="true" />
+                <element signature="e#9209#9210#0" expanded="true" />
+                <element signature="e#9247#9248#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="94" column="22" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
+            <state relative-caret-position="191">
+              <caret line="96" column="31" lean-forward="true" selection-start-line="96" selection-start-column="31" selection-end-line="96" selection-end-column="31" />
+              <folding>
+                <element signature="e#985#986#0" expanded="true" />
+                <element signature="e#1021#1022#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -81,7 +115,9 @@
       <find>start()</find>
       <find>running</find>
       <find>hasStarted</find>
+      <find>update</find>
       <find>start</find>
+      <find>resetPrompt</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -90,9 +126,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Player.java" />
         <option value="$PROJECT_DIR$/src/Window.java" />
         <option value="$PROJECT_DIR$/src/Engine.java" />
+        <option value="$PROJECT_DIR$/src/Player.java" />
       </list>
     </option>
   </component>
@@ -140,7 +176,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="C:/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562960758759" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562964908316" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -190,12 +226,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562949533020</updated>
-      <workItem from="1562949537136" duration="5502000" />
+      <workItem from="1562949537136" duration="9348000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5502000" />
+    <option name="totallyTimeSpent" value="9348000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="574" y="0" width="1280" height="1047" extended-state="0" />
@@ -270,33 +306,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="94" column="22" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Window.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="80" column="21" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="21" />
+        <state relative-caret-position="17">
+          <caret line="60" column="81" selection-start-line="60" selection-start-column="81" selection-end-line="60" selection-end-column="81" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3526#3527#0" expanded="true" />
+            <element signature="e#3569#3570#0" expanded="true" />
             <element signature="e#3623#3624#0" expanded="true" />
             <element signature="e#3667#3668#0" expanded="true" />
-            <element signature="e#5707#5708#0" expanded="true" />
-            <element signature="e#5751#5752#0" expanded="true" />
+            <element signature="e#6312#6313#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Engine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="122" column="53" selection-start-line="122" selection-start-column="53" selection-end-line="122" selection-end-column="53" />
+        <state relative-caret-position="187">
+          <caret line="32" column="40" lean-forward="true" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1830#2738#0" expanded="true" />
+            <element signature="e#2737#2738#0" expanded="true" />
+            <element signature="e#2776#3944#0" expanded="true" />
+            <element signature="e#3943#3944#0" expanded="true" />
+            <element signature="e#8685#8686#0" expanded="true" />
+            <element signature="e#8736#8737#0" expanded="true" />
+            <element signature="e#8769#8770#0" expanded="true" />
+            <element signature="e#8798#8799#0" expanded="true" />
+            <element signature="e#8840#8841#0" expanded="true" />
+            <element signature="e#8869#8870#0" expanded="true" />
+            <element signature="e#8915#8916#0" expanded="true" />
+            <element signature="e#8946#8947#0" expanded="true" />
+            <element signature="e#8979#8980#0" expanded="true" />
+            <element signature="e#9027#9028#0" expanded="true" />
+            <element signature="e#9059#9060#0" expanded="true" />
+            <element signature="e#9096#9097#0" expanded="true" />
+            <element signature="e#9128#9129#0" expanded="true" />
+            <element signature="e#9177#9178#0" expanded="true" />
+            <element signature="e#9209#9210#0" expanded="true" />
+            <element signature="e#9247#9248#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="96" column="31" lean-forward="true" selection-start-line="96" selection-start-column="31" selection-end-line="96" selection-end-column="31" />
+          <folding>
+            <element signature="e#985#986#0" expanded="true" />
+            <element signature="e#1021#1022#0" expanded="true" />
           </folding>
         </state>
       </provider>

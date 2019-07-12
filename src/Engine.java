@@ -28,6 +28,7 @@ public class Engine extends Timer {
         this.randomer = new Random();
 
         this.player = player;
+        player.addEngine(this);
 
         this.lazers = new ArrayList<>();
         this.healPods = new ArrayList<>();
@@ -60,7 +61,6 @@ public class Engine extends Timer {
                 if(hasLost && !resetPrompt) {
                     drawPanel.updateParentFrame();
                     resetPrompt = true;
-                    //reset();
                 }
                 if(!hasLost) {
                     checkPlayer(player, drawPanel);
@@ -110,6 +110,8 @@ public class Engine extends Timer {
                         clearHealPods();
                         spawnManyHealpods(3);
                     }
+                } else {
+                    this.cancel();
                 }
 
             }
@@ -117,7 +119,7 @@ public class Engine extends Timer {
     }
 
     public void reset() {
-        System.out.println("RESET");
+        System.out.println("Engine RESET");
         /* TODO: Add code to reset engine
          *  - husk på forskjell på STOP og RESET
          *  - ny thread med totalTime ved hver reset?
@@ -137,7 +139,7 @@ public class Engine extends Timer {
     }
 
     public void stop() {
-        System.out.println("STOP");
+        System.out.println("Engine STOP");
         hasLost = true;
         running = false;
         //hasStarted = false;
@@ -152,6 +154,7 @@ public class Engine extends Timer {
 
     private void checkPlayer(Player player, Window.DrawPanel drawPanel) {
         player.getInputs();
+
         if (player.x <= 0) {
             player.x = 0;
         }
@@ -167,14 +170,9 @@ public class Engine extends Timer {
         if(player.health <= 0) {
             stop();
         }
+
         drawPanel.repaint(getBigClipX1(), getBigClipY1(),
                 getBigClipX2(), getBigClipY2());
-    }
-    private void checkAllLazers(ArrayList<Lazer> lazers, Window.DrawPanel drawPanel) {
-        for(Lazer l : lazers) {
-            l.checkCollision(player);
-            drawPanel.repaint(l.getClip(3));
-        }
     }
     private void checkAllHealpods(ArrayList<HealPod> healPods, Window.DrawPanel drawPanel) {
         for (HealPod hp : healPods) {
@@ -182,7 +180,16 @@ public class Engine extends Timer {
             drawPanel.repaint(hp.getClip(3));
         }
     }
+    private void checkAllLazers(ArrayList<Lazer> lazers, Window.DrawPanel drawPanel) {
+        for(Lazer l : lazers) {
+            l.checkCollision(player);
+            drawPanel.repaint(l.getClip(3));
+        }
+    }
 
+    /*
+    HealPod things
+     */
     public void clearHealPods() {
         healPods.clear();
         drawPanel.repaint();
@@ -207,6 +214,10 @@ public class Engine extends Timer {
         int y = posY;
         healPods.add(new HealPod(x,y,width,height));
     }
+
+    /*
+    Lazer things
+     */
     public void clearLazers() {
         lazers.clear();
         drawPanel.repaint();

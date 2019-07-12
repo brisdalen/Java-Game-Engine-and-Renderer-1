@@ -11,8 +11,8 @@ public class Window extends JFrame {
     public static final int CANVAS_HEIGHT = 480;
     public int currentWindowWidth;
     public int currentWindowHeight;
-    public static final Color CANVAS_BG_COLOR = new Color(120,80,120);
-    public Color playerColor = new Color(180,45,50);
+    public static final Color CANVAS_BG_COLOR = new Color(120, 80, 120);
+    public Color playerColor = new Color(180, 45, 50);
 
     private boolean first = true;
 
@@ -27,6 +27,8 @@ public class Window extends JFrame {
     private Engine engine;
 
     public Window() {
+        setResizable(false);
+
         startGameButton = new JButton("Start the game!");
         startGameButton.addActionListener(new ActionListener() {
             @Override
@@ -56,7 +58,7 @@ public class Window extends JFrame {
         currentWindowHeight = drawPanel.getHeight();
 
         engine = new Engine(drawPanel,
-                            new Player(CANVAS_WIDTH / 2 -10,CANVAS_HEIGHT / 2 -10,20, 20, playerColor));
+                new Player(CANVAS_WIDTH / 2 - 10, CANVAS_HEIGHT / 2 - 10, 20, 20, playerColor));
 
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.getAllFonts();
@@ -78,6 +80,17 @@ public class Window extends JFrame {
         requestFocus();
     }
 
+    /**
+     * Constructor used when resetting the game. Opens the window in the location of the previous window.
+     *
+     * @param locationX The x-coordinate of the previous window.
+     * @param locationY The y-coordinate of the previous window.
+     */
+    public Window(int locationX, int locationY) {
+        this();
+        setLocation(locationX, locationY);
+    }
+
     public void startGame(JButton button) {
         System.out.println("Game has started.");
         button.setEnabled(false);
@@ -90,12 +103,12 @@ public class Window extends JFrame {
         this.setVisible(false);
         this.dispose();
         engine.reset();
-        new Window();
+        new Window(this.getX(), this.getY());
     }
 
     public void setButtonToReset(JButton button) {
         button.setText("Go again?");
-        for(ActionListener al : button.getActionListeners()) {
+        for (ActionListener al : button.getActionListeners()) {
             button.removeActionListener(al);
         }
         button.addActionListener(new ActionListener() {
@@ -110,7 +123,7 @@ public class Window extends JFrame {
          *  - Set player to the centre
          *  - Clear all healpods and spawn 1 in the centre
          *  - Clear all lazers
-        **/
+         **/
     }
 
     class DrawPanel extends JPanel {
@@ -120,11 +133,13 @@ public class Window extends JFrame {
         public DrawPanel(Window window) {
             this.window = window;
         }
+
         public void updateParentFrame() {
-            if(engine.player.health <= 0) {
+            if (engine.player.health <= 0) {
                 setButtonToReset(window.startGameButton);
             }
         }
+
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
@@ -137,7 +152,7 @@ public class Window extends JFrame {
             boolean first = true;
             int fontX = 0;
             int fontY = 0;
-            if(first) {
+            if (first) {
                 g.setFont(font);
                 FontMetrics metrics = g.getFontMetrics();
                 fontX = ((currentWindowWidth / 2) - metrics.stringWidth("YOU'RE DEAD.") / 2);
@@ -145,33 +160,30 @@ public class Window extends JFrame {
                 first = false;
             }
 
-            // Unngå ConcurrentModificationException når man taper
-            if(!Engine.hasLost) {
-                for (int i = 0; i < engine.getLazers().size(); i++) {
-                    engine.getLazers().get(i).paint(g);
-                }
+            for (int i = 0; i < engine.getLazers().size(); i++) {
+                engine.getLazers().get(i).paint(g);
+            }
 
-                for (HealPod hp : engine.getHealPods()) {
-                    hp.paint(g);
-                }
+            for (HealPod hp : engine.getHealPods()) {
+                hp.paint(g);
             }
 
             engine.getPlayer().paint(g);
-            engine.getPlayer().paintHealthbar(g, currentWindowWidth/23, currentWindowHeight/17,
-                    currentWindowWidth/4, currentWindowHeight/13);
+            engine.getPlayer().paintHealthbar(g, currentWindowWidth / 23, currentWindowHeight / 17,
+                    currentWindowWidth / 4, currentWindowHeight / 13);
 
-            repaint(currentWindowWidth/23, currentWindowHeight/17,
-                    currentWindowWidth/4, currentWindowHeight/13);
+            repaint(currentWindowWidth / 23, currentWindowHeight / 17,
+                    currentWindowWidth / 4, currentWindowHeight / 13);
 
-            if(engine.getPlayer().health == 0) {
+            if (engine.getPlayer().health == 0) {
                 g.setColor(Color.black);
                 g.drawString("YOU'RE DEAD.", fontX, fontY);
                 repaint();
                 //engine.stop();
             }
 
-            engine.getPlayer().paintScore(g, currentWindowWidth-180, 50);
-            repaint(currentWindowWidth-300, 20, currentWindowWidth-20, 60);
+            engine.getPlayer().paintScore(g, currentWindowWidth - 180, 50);
+            repaint(currentWindowWidth - 300, 20, currentWindowWidth - 20, 60);
 
 
         }
@@ -180,7 +192,7 @@ public class Window extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
-            public void run(){
+            public void run() {
                 new Window();
             }
         });

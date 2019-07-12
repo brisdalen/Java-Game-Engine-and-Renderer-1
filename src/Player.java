@@ -9,6 +9,8 @@ public class Player {
     public int movementSpeedStart = 4;
     public int movementSpeed = 4;
     public Controller controller;
+    // Is this bad coupling?
+    private Engine engine;
     private int maxHealth = 1000;
     public int score = 0;
 
@@ -28,6 +30,10 @@ public class Player {
         if(health > maxHealth) {
             health = maxHealth;
         }
+    }
+
+    public void addEngine(Engine engine) {
+        this.engine = engine;
     }
 
     public void reset() {
@@ -92,7 +98,10 @@ public class Player {
             y += movementSpeed;
         }
         if(controller.k) {
+            // Instantly kill the player
             health = 0;
+            engine.stop();
+            engine.drawPanel.updateParentFrame();
         }
     }
 
@@ -121,7 +130,7 @@ public class Player {
         double percentage = width;
         percentage /= 100;
         percentage *= (health/10);
-        /**
+        /*
          * Percentages:       1% = (width/400)
          *                  100% = (width/400) * 100
          */
