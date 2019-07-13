@@ -12,7 +12,6 @@ public class Window extends JFrame {
     public int currentWindowWidth;
     public int currentWindowHeight;
     public static final Color CANVAS_BG_COLOR = new Color(120, 80, 120);
-    public Color playerColor = new Color(180, 45, 50);
 
     private boolean first = true;
 
@@ -58,7 +57,7 @@ public class Window extends JFrame {
         currentWindowHeight = drawPanel.getHeight();
 
         engine = new Engine(drawPanel,
-                new Player(CANVAS_WIDTH / 2 - 10, CANVAS_HEIGHT / 2 - 10, 20, 20, playerColor));
+                new Player(CANVAS_WIDTH / 2 - 10, CANVAS_HEIGHT / 2 - 10, 20, 20));
 
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.getAllFonts();

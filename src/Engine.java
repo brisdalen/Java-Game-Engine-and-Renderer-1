@@ -174,16 +174,16 @@ public class Engine extends Timer {
         drawPanel.repaint(getBigClipX1(), getBigClipY1(),
                 getBigClipX2(), getBigClipY2());
     }
-    private void checkAllHealpods(ArrayList<HealPod> healPods, Window.DrawPanel drawPanel) {
-        for (HealPod hp : healPods) {
-            hp.checkCollision(player);
-            drawPanel.repaint(hp.getClip(3));
-        }
-    }
     private void checkAllLazers(ArrayList<Lazer> lazers, Window.DrawPanel drawPanel) {
         for(Lazer l : lazers) {
             l.checkCollision(player);
             drawPanel.repaint(l.getClip(3));
+        }
+    }
+    private void checkAllHealpods(ArrayList<HealPod> healPods, Window.DrawPanel drawPanel) {
+        for (HealPod hp : healPods) {
+            hp.checkCollision(player);
+            drawPanel.repaint(hp.getClip(3));
         }
     }
 

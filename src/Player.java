@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Player {
     int x, y, width, height, startX, startY;
-    Color color = Color.red;
+    Color color = new Color(180, 45, 50);
     private int direction = 2; // 0 = left, 1 = up, 2 = right, 3 = down
     public int startHealth = 1000;
     public int health = startHealth;
@@ -17,14 +17,13 @@ public class Player {
     private int fixedHealAmount = 50;
     private int fixedDamageAmount = 50;
 
-    public Player(int x, int y, int width, int height, Color color) {
+    public Player(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.startX = x;
         this.startY = y;
         this.width = width;
         this.height = height;
-        this.color = color;
         this.controller = new Controller(this);
 
         if(health > maxHealth) {
